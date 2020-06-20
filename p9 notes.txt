@@ -1,0 +1,14 @@
+
+MAKE CLEAN BEFORE SUBMITTING
+LENGTH CHECK
+delete student tests
+make helper functions static
+
+memory leak in test 8 9 10?
+
+ 
+
+valgrind --leak-check=full public03.x
+
+when i remove a dir, a dir of name "" is left
+when removing a HEAD dir
