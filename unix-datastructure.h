@@ -1,11 +1,3 @@
-/*TerpConnect: aawoke
-  UID: 114094155
-  Discussion #: 0202
-  I pledge on my honor that I have not given nor recieved
-  any unauthorized assistance on this assignment
-*/
-
-
 /*
   Establishes core struct for project
 A Unix node can be either a file or a dir, determined

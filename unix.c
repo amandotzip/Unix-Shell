@@ -1,12 +1,3 @@
-/*TerpConnect: aawoke
-  UID: 114094155
-  Discussion #: 0202
-  I pledge on my honor that I have not given nor recieved
-  any unauthorized assistance on this assignment
-*/
-
-
-
 /*
 Project is focused on application of structs to implement
 a UNIX like filesystem. Unix structs are essentially Nodes
@@ -27,8 +18,19 @@ recursion to traverse the filesystem.
 #include <stdlib.h>
 #include <string.h>
 #include "unix.h"
-#include "memory-checking.h"
 
+
+
+int main() {
+  Unix filesystem;
+
+  mkfs(&filesystem);
+
+  mkdir(&filesystem, "chipmunk");
+  pwd(&filesystem);
+  ls(&filesystem, ".");
+  return 0;
+}
 
 /*Creates an empty filesystem (the root of it all), 
 with the name being "/" to  represent root. The root

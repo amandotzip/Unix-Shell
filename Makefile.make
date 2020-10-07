@@ -1,10 +1,3 @@
-#TerpConnect: aawoke
-#UID: 114094155
-#Discussion #: 0202
-#I pledge on my honor that I have not given nor recieved
-#any unauthorized assistance on this assignment
-
-
 #Aliased flags and compiler
 CC = gcc
 CFLAGS = -ansi -pedantic-errors -Wall -fstack-protector-all -Werror -Wshadow\
