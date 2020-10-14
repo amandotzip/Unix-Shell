@@ -1,2 +1,0 @@
-memory leak in test 8 9 10?
-valgrind --leak-check=full public03.x
