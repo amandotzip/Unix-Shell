@@ -1,5 +1,9 @@
 # Unix Shell
-Implements a unix shell filesystem in C
+Implements a Unix shell filesystem in C
+
+# Demo 
+Watch the video below
+[![Watch the video](https://imgur.com/xuJWqSJ.jpg)](https://youtu.be/uhuevBkelrc)
 
 # How to run
 ## Windows
