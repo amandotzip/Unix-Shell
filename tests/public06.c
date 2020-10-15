@@ -1,14 +1,7 @@
 #include <stdio.h>
 #include "unix.h"
 
-/* CMSC 216, Fall 2019, Project #9
- * Public test 6 (public06.c)
- *
- * Tests calling rm() to remove some files.
- *
- * (c) Larry Herman, 2019.  You are allowed to use this code yourself, but
- * not to provide it to anyone else.
- */
+
 
 int main() {
   Unix filesystem;

@@ -1,12 +1,6 @@
 /*
- * CMSC 216, Fall 2019, Project #8
- * Secret test 12 (secret12.c)
- *
  * Tests creating a deeply nested subdirectory, changing to it, and calling
  * pwd() from it.
- *
- * (c) Larry Herman, 2019.  You are allowed to use this code yourself, but
- * not to provide it to anyone else.
  */
 
 #include <stdio.h>

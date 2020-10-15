@@ -1,14 +1,9 @@
 /*
- * CMSC 216, Fall 2019, Project #8
- * Secret test 1 (secret01.c)
- *
  * Tests that each filesystem (Unix variable) is independent, and doesn't
  * share any data with other ones.  (If you used global variables- which is
  * prohibited according to the project style guide- you will probably fail
  * this test.)
  *
- * (c) Larry Herman, 2019.  You are allowed to use this code yourself, but
- * not to provide it to anyone else.
  */
 
 #include <stdio.h>

@@ -2,15 +2,7 @@
 #include "unix.h"
 #include "memory-checking.h"
 
-/* CMSC 216, Fall 2019, Project #9
- * Public test 3 (public03.c)
- *
- * Tests calling rmfs() on a filesystem that only contains files (in the
- * root directory), ensuring that memory is released and the heap is valid.
- *
- * (c) Larry Herman, 2019.  You are allowed to use this code yourself, but
- * not to provide it to anyone else.
- */
+
 
 int main() {
   Unix filesystem;
