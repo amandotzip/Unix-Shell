@@ -3,7 +3,7 @@ Implements a Unix shell filesystem in C
 
 # Demo 
 Watch the video below
-[![Watch the video](https://imgur.com/xuJWqSJ.jpg)](https://youtu.be/uhuevBkelrc)
+[![Watch the video](https://imgur.com/xuJWqSJ.jpg)](https://youtu.be/R3An5HIKcXE)
 
 # How to run
 ## Windows

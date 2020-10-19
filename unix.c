@@ -20,63 +20,70 @@ recursion to traverse the filesystem.
 #include <string.h>
 #include "unix.h"
 
-
 /*Contains primary naviagtion of system*/
-int main() {
+int main()
+{
   Unix filesystem;
   mkfs(&filesystem);
   char input[100];
 
-
-  while (strcmp(input, "exit") != 0){
-    pwd(&filesystem);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+  while (strcmp(input, "exit") != 0)
+  {
+    pwd(&filesystem);
     gets(input);
 
-    char * tokens[100];//list of input args
-     //get list of arguments
+    char *tokens[100]; //list of input args
+                       //get list of arguments
     int i = 0;
-    char * token = strtok(input, " ");
+    char *token = strtok(input, " ");
     // loop through the string to extract all other tokens
-    while( token != NULL ) {
-        tokens[i] = token;
-        token = strtok(NULL, " ");
-        i++;
+    while (token != NULL)
+    {
+      tokens[i] = token;
+      token = strtok(NULL, " ");
+      i++;
     }
-    int input_length = sizeof(token)/sizeof(token[0]);
+    int input_length = sizeof(token) / sizeof(token[0]);
 
-
-
-    if (strcmp(input, "ls") == 0){
+    if (strcmp(input, "ls") == 0)
+    {
       ls(&filesystem, ".");
     }
-    else if (strcmp(input, "pwd")==0){
-      pwd(&filesystem);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+    else if (strcmp(input, "pwd") == 0)
+    {
+      pwd(&filesystem);
     }
-    else if (input_length > 1){
-      if (strcmp(tokens[0], "mkdir") == 0){
+    else if (input_length > 1)
+    {
+      if (strcmp(tokens[0], "mkdir") == 0)
+      {
         mkdir(&filesystem, tokens[1]);
       }
-      else if (strcmp(tokens[0], "touch") == 0){
+      else if (strcmp(tokens[0], "touch") == 0)
+      {
         touch(&filesystem, tokens[1]);
       }
-      else if (strcmp(tokens[0], "cd") == 0){
-        if(cd(&filesystem, tokens[1]) == 0){//pointer changed on success, on failure not changed and error prints
+      else if (strcmp(tokens[0], "cd") == 0)
+      {
+        if (cd(&filesystem, tokens[1]) == 0)
+        { //pointer changed on success, on failure not changed and error prints
           printf("ERROR: Directory not found :( \n");
         }
-
-      } 
-      else if (strcmp(tokens[0], "rm") == 0){
+      }
+      else if (strcmp(tokens[0], "rm") == 0)
+      {
         rm(&filesystem, tokens[1]);
       }
     }
-    else if (strcmp(input, "rmfs")==0){
+    else if (strcmp(input, "rmfs") == 0)
+    {
       rmfs(&filesystem);
       mkfs(&filesystem);
     }
-    else{
-      printf( "ERROR: invalid argument\n"); 
+    else
+    {
+      printf("ERROR: invalid argument\n");
     }
-
   }
 
   return 0;
@@ -89,26 +96,27 @@ nothing so parent_dir will equal NULL. The root has
 no children yet, so head_child should = NULL. There 
 are no dirs on the same level as root, so that should also = NULL.*/
 
-
 /*makes filesystem point to the root,
 and the root leads to the rest of the nodes
 int the system*/
-void mkfs(Unix *filesystem){
+void mkfs(Unix *filesystem)
+{
   Unix *root;
 
   /*standard faulty param check*/
-  if (filesystem != NULL){
+  if (filesystem != NULL)
+  {
 
     /*Root is allocated space along with char *name */
     root = malloc(sizeof(Unix));
     if (root == NULL)
       return;
-    
+
     root->name = malloc(strlen("/") + 1);
     if (root->name == NULL) /*if not enough space*/
       return;
-    
-    strcpy(root->name,"/");
+
+    strcpy(root->name, "/");
 
     /*root is always a dir, so set is_dir to true*/
     root->is_dir = 1;
@@ -129,13 +137,13 @@ void mkfs(Unix *filesystem){
   }
 }
 
-
 /*touch aims to create files. the file name is determined by the arg
 parm. if a file or dir with the same name 
 already exists, a new file should not be added. current is used
 to traverse the list of files/dirs within the current directory.
 NOTE this function inserts in order.*/
-int touch(Unix *filesystem, const char arg[]){
+int touch(Unix *filesystem, const char arg[])
+{
 
   /*begin at head_child of current dir. that is the list of 
   what the current dir contains*/
@@ -149,19 +157,18 @@ int touch(Unix *filesystem, const char arg[]){
 
   /*if contains a "/"" and isnt a single "/"*/
   if ((strlen(arg) > 1) && strchr(arg + 1, '/') != NULL)
-    return 0; 
+    return 0;
 
   /*any of these as an arg should have no effect*/
-  if (strcmp(arg, ".") == 0 || strcmp(arg, "..") == 0
-   || strcmp(arg, "/") == 0)
+  if (strcmp(arg, ".") == 0 || strcmp(arg, "..") == 0 || strcmp(arg, "/") == 0)
     return 1;
-
 
   /*begin current at head child to traverse current directory*/
   current = filesystem->current_dir->head_child;
   /*if the list of files for current directory is empty,
-    make sure not to traverse list.*/   
-  if (current == NULL){
+    make sure not to traverse list.*/
+  if (current == NULL)
+  {
     /*inits new Unix*/
     new = malloc(sizeof(Unix));
     if (new == NULL)
@@ -169,18 +176,18 @@ int touch(Unix *filesystem, const char arg[]){
 
     /*new unix shares parent of current, the parent being NULL*/
     new->parent_dir = filesystem->current_dir->parent_dir;
-    
+
     /*dynamically allocates size of new Unix name, then
     copies arg onto name*/
-    
+
     new->name = malloc(strlen(arg) + 1);
     if (new->name == NULL)
       return 0;
     strcpy(new->name, arg);
-    
+
     /*this is a file, so is_dir is set to false*/
     new->is_dir = 0;
-    
+
     /*first item in list is the head_child*/
     filesystem->current_dir->head_child = new;
     new->next = NULL;
@@ -198,10 +205,11 @@ int touch(Unix *filesystem, const char arg[]){
   strcat(arg_copy, "/");
 
   /*begin to traverse list of dir items.*/
-  while (current != NULL){
-  /*if a file with same name already exists, exit but not error case*/
-    if (strcmp(current->name, arg) == 0 
-      || strcmp(current->name,arg_copy) == 0){
+  while (current != NULL)
+  {
+    /*if a file with same name already exists, exit but not error case*/
+    if (strcmp(current->name, arg) == 0 || strcmp(current->name, arg_copy) == 0)
+    {
       free(arg_copy);
       return 1;
     }
@@ -209,45 +217,46 @@ int touch(Unix *filesystem, const char arg[]){
   }
   free(arg_copy);
 
-
-
   /*left while loop means didnt find copy of name arg
   meaning we will be able to add it
   and inits new Unix*/
-  
+
   new = malloc(sizeof(Unix));
   if (new == NULL)
-      return 0;
+    return 0;
   /*parent should be current, since we're in the list under current*/
   new->parent_dir = filesystem->current_dir;
   /*dynamically allocates size of new Unix name, then
     copies arg onto name*/
- 
+
   new->name = malloc(strlen(arg) + 1);
   if (new->name == NULL)
-      return 0;
+    return 0;
   strcpy(new->name, arg);
 
   /*this is a file, so is_dir is set to false*/
   new->is_dir = 0;
   new->head_child = NULL;
 
-
   /*if alphabetically file name should be placed before the head,
     place before head in list before traversing*/
-  if (strcmp(arg, filesystem->current_dir->head_child->name) < 0){
+  if (strcmp(arg, filesystem->current_dir->head_child->name) < 0)
+  {
     new->next = filesystem->current_dir->head_child;
     filesystem->current_dir->head_child = new;
     return 1;
   }
-  else {
+  else
+  {
     /*resets current to head of list*/
     current = filesystem->current_dir->head_child;
     /*traverse through list
       if next thing is bigger than new, new is in the right place.
       on insertion return 1*/
-    while (current->next != NULL){
-      if (strcmp(new->name, current->next->name) < 0){
+    while (current->next != NULL)
+    {
+      if (strcmp(new->name, current->next->name) < 0)
+      {
         new->next = current->next;
         current->next = new;
         return 1;
@@ -256,7 +265,8 @@ int touch(Unix *filesystem, const char arg[]){
     }
     /*if at end of list, add to end of list.
       on insertion return 1.*/
-    if (current->next == NULL){
+    if (current->next == NULL)
+    {
       current->next = new;
       new->next = NULL;
       return 1;
@@ -269,12 +279,11 @@ int touch(Unix *filesystem, const char arg[]){
   return 0;
 }
 
-
-
 /*nearly identical to the touch() function. Only difference
 is the modification to the argument string for comparison,
 and the fact that any new Unix would have is_dir be true.*/
-int mkdir(Unix *filesystem, const char arg[]){
+int mkdir(Unix *filesystem, const char arg[])
+{
   /*begin at head_child of current dir. that is the list of 
     what the current dir contains*/
   Unix *current;
@@ -287,11 +296,10 @@ int mkdir(Unix *filesystem, const char arg[]){
 
   /*if contains a "/"" and isnt a single "/"*/
   if ((strlen(arg) > 1) && strchr(arg, '/') != NULL)
-    return 0; 
+    return 0;
 
   /*any of these as an arg are also error*/
-  if (strcmp(arg, ".") == 0 || strcmp(arg,"..") == 0
-   || strcmp(arg,"/") == 0)
+  if (strcmp(arg, ".") == 0 || strcmp(arg, "..") == 0 || strcmp(arg, "/") == 0)
     return 0;
 
   /*makes copy of arg name, appends "/" to
@@ -305,11 +313,13 @@ int mkdir(Unix *filesystem, const char arg[]){
   /*begin current at head child to traverse current directory*/
   current = filesystem->current_dir->head_child;
   /*if the list of files for current directory is empty,
-    make sure not to traverse list.*/ 
-  if (current == NULL){
-  /*inits new Unix*/
+    make sure not to traverse list.*/
+  if (current == NULL)
+  {
+    /*inits new Unix*/
     new = malloc(sizeof(Unix));
-    if (new == NULL){
+    if (new == NULL)
+    {
       free(arg_copy);
       return 0;
     }
@@ -319,14 +329,15 @@ int mkdir(Unix *filesystem, const char arg[]){
     /*when comparing names we have to check
       for '/' char, because all dirs have a '/'*/
     new->name = malloc(strlen(arg_copy) + 1);
-    if (new->name == NULL){
+    if (new->name == NULL)
+    {
       free(arg_copy);
       free(new);
       return 0;
     }
     strcpy(new->name, arg_copy);
     free(arg_copy);
-    
+
     /*this is indeed a dir, so is_dir should be true*/
     new->is_dir = 1;
     new->head_child = NULL;
@@ -334,16 +345,16 @@ int mkdir(Unix *filesystem, const char arg[]){
     /*first item in list is the head_child*/
     filesystem->current_dir->head_child = new;
     new->next = NULL;
-    
+
     return 1;
   }
 
-
   /*begin to traverse list of dir items.*/
-  while (current != NULL){
-  /*if a dir with same name already exists, exit as error*/
-    if (strcmp(current->name,arg) == 0 
-      || strcmp(current->name,arg_copy) == 0 ){
+  while (current != NULL)
+  {
+    /*if a dir with same name already exists, exit as error*/
+    if (strcmp(current->name, arg) == 0 || strcmp(current->name, arg_copy) == 0)
+    {
       free(arg_copy);
       return 0;
     }
@@ -354,20 +365,22 @@ int mkdir(Unix *filesystem, const char arg[]){
     meaning we will be able to add it
     and inits new Unix*/
   new = malloc(sizeof(Unix));
-   if (new == NULL){
-      free(arg_copy);
-      return 0;
-   }
+  if (new == NULL)
+  {
+    free(arg_copy);
+    return 0;
+  }
   /*parent should be current, since we're in the list under current*/
   new->parent_dir = filesystem->current_dir;
-  
+
   /*dynamically allocates size of new Unix name, then
     copies arg onto name*/
 
   new->name = malloc(strlen(arg_copy) + 1);
-  if (new->name == NULL){
-      free(arg_copy);
-      return 0;
+  if (new->name == NULL)
+  {
+    free(arg_copy);
+    return 0;
   }
   strcpy(new->name, arg_copy);
   free(arg_copy);
@@ -378,28 +391,32 @@ int mkdir(Unix *filesystem, const char arg[]){
 
   /*if alphabetically file name should be placed before the head,
   place before head in list before traversing*/
-  if (strcmp(arg, filesystem->current_dir->head_child->name) < 0){
+  if (strcmp(arg, filesystem->current_dir->head_child->name) < 0)
+  {
     new->next = filesystem->current_dir->head_child;
-    filesystem->current_dir->head_child = new; 
+    filesystem->current_dir->head_child = new;
   }
-  else {
-  /*resets current to head of list*/
+  else
+  {
+    /*resets current to head of list*/
     current = filesystem->current_dir->head_child;
     /*traverse through list
       if next thing is bigger than new, new is in the right place.
       on insertion return 1*/
     while (current->next != NULL)
     {
-      if (strcmp(new->name, current->next->name) < 0){
+      if (strcmp(new->name, current->next->name) < 0)
+      {
         new->next = current->next;
         current->next = new;
         return 1;
       }
       current = current->next;
     }
-     /*if at end of list, add to end of list.
+    /*if at end of list, add to end of list.
       on insertion return 1.*/
-    if (current->next == NULL){
+    if (current->next == NULL)
+    {
       current->next = new;
       new->next = NULL;
       return 1;
@@ -409,11 +426,10 @@ int mkdir(Unix *filesystem, const char arg[]){
   return 0;
 }
 
-
-
 /*Changes the current_dir pointer of filesystem
   depenging on arg.*/
-int cd(Unix *filesystem, const char arg[]){
+int cd(Unix *filesystem, const char arg[])
+{
   Unix *current;
   char *arg_copy;
 
@@ -423,14 +439,15 @@ int cd(Unix *filesystem, const char arg[]){
 
   /*if contains a "/"" and isnt a single "/"*/
   if ((strlen(arg) > 1) && strchr(arg + 1, '/') != NULL)
-    return 0; 
+    return 0;
 
   /*if arg is . or empty, not error case but should exit*/
   if (strcmp(arg, ".") == 0 || strlen(arg) == 0)
     return 1;
 
   /*.. changed cd to parent*/
-  if (strcmp(arg, "..") == 0){
+  if (strcmp(arg, "..") == 0)
+  {
     /*if we're at the root, parent is NULL.
       not error case but should exit*/
     if (filesystem->current_dir->parent_dir == NULL)
@@ -442,7 +459,8 @@ int cd(Unix *filesystem, const char arg[]){
   }
 
   /*root char as arg changes current_dir to root */
-  if (strcmp(arg, "/") == 0){
+  if (strcmp(arg, "/") == 0)
+  {
     filesystem->current_dir = filesystem->root;
     return 1;
   }
@@ -450,8 +468,9 @@ int cd(Unix *filesystem, const char arg[]){
 
   /*traverse list of items within current. if it 
     is a dir and name matches argument, enter that dir*/
-  while (current != NULL){
-    /*arg_copy is the arg without the '/' */ 
+  while (current != NULL)
+  {
+    /*arg_copy is the arg without the '/' */
     arg_copy = malloc(strlen(arg) + 2);
     if (arg_copy == NULL)
       return 0;
@@ -459,7 +478,8 @@ int cd(Unix *filesystem, const char arg[]){
     strcat(arg_copy, "/");
 
     /*if current is a dir and name matches*/
-    if (current->is_dir && strcmp(current->name, arg_copy) == 0){
+    if (current->is_dir && strcmp(current->name, arg_copy) == 0)
+    {
       /*updates parent, and reassigns current*/
       current->parent_dir = filesystem->current_dir;
       filesystem->current_dir = current;
@@ -475,40 +495,44 @@ int cd(Unix *filesystem, const char arg[]){
   return 0;
 }
 
-
-
 /*prints list of items within a directory
 depending on arg passed in. if passed a name print 
 whole name*/
-int ls(Unix *filesystem, const char arg[]){
+int ls(Unix *filesystem, const char arg[])
+{
   Unix *current;
-  char * arg_copy;
-  
+  char *arg_copy;
+
   /*standard faulty param checks*/
   if (filesystem == NULL || arg == NULL)
     return 0;
 
   /*if contains a "/" and isnt a single "/"*/
   if ((strlen(arg) > 1) && strchr(arg + 1, '/') != NULL)
-    return 0; 
+    return 0;
 
   /*if . or empty, print all within current dir*/
-  if (strcmp(arg, ".") == 0 || strcmp(arg, "") == 0){
+  if (strcmp(arg, ".") == 0 || strcmp(arg, "") == 0)
+  {
     /*traverse current dir*/
     current = filesystem->current_dir->head_child;
-    while (current != NULL){
-      printf ("%s\n", current->name);
+    while (current != NULL)
+    {
+      printf("%s\n", current->name);
       current = current->next;
     }
     return 1;
   }
   /*if .., print parents children.*/
-  else if (strcmp(arg, "..") == 0){
+  else if (strcmp(arg, "..") == 0)
+  {
     /*if at root*/
-    if (filesystem->current_dir->parent_dir == NULL){
+    if (filesystem->current_dir->parent_dir == NULL)
+    {
       current = filesystem->current_dir->head_child;
-      while (current != NULL){
-        printf ("%s\n", current->name);
+      while (current != NULL)
+      {
+        printf("%s\n", current->name);
         current = current->next;
       }
       return 1;
@@ -517,31 +541,34 @@ int ls(Unix *filesystem, const char arg[]){
     /*reassigns current to parent
       and traverse parent dir*/
 
-
     current = filesystem->current_dir->parent_dir->head_child;
-    while (current != NULL){
-      printf ("%s\n", current->name);
-      current= current->next;
+    while (current != NULL)
+    {
+      printf("%s\n", current->name);
+      current = current->next;
     }
   }
   /*root means print immediate children of root*/
-  if (strcmp(arg,"/") == 0){
+  if (strcmp(arg, "/") == 0)
+  {
     /*traverse root dir*/
     current = filesystem->root->head_child;
-    while (current != NULL){
-      printf ("%s\n", current->name);
-      current= current->next;
+    while (current != NULL)
+    {
+      printf("%s\n", current->name);
+      current = current->next;
     }
     return 1;
   }
   /*now checks for specific file or dir name to ls*/
-  else {
+  else
+  {
     /*traverse current dir*/
     current = filesystem->current_dir->head_child;
-    while (current != NULL){
+    while (current != NULL)
+    {
       /*if it is a dir and name matches with arg,
       reassign current then print list of arg dir*/
-      
 
       arg_copy = malloc(strlen(arg) + 2);
       if (arg_copy == NULL)
@@ -549,12 +576,14 @@ int ls(Unix *filesystem, const char arg[]){
       strcpy(arg_copy, arg);
       strcat(arg_copy, "/");
 
-      if (current->is_dir && strcmp(arg_copy, current->name) == 0){
-      /*name was found so head_child is list of things within that
+      if (current->is_dir && strcmp(arg_copy, current->name) == 0)
+      {
+        /*name was found so head_child is list of things within that
         Unix dir*/
         current = current->head_child;
-        while (current != NULL){
-          printf ("%s\n", current->name);
+        while (current != NULL)
+        {
+          printf("%s\n", current->name);
           current = current->next;
         }
         free(arg_copy);
@@ -562,40 +591,40 @@ int ls(Unix *filesystem, const char arg[]){
       }
       /*if arg name is found as a file, print that single file then
       exit.*/
-      if (current->is_dir == 0 && strcmp(arg, current->name) == 0){
+      if (current->is_dir == 0 && strcmp(arg, current->name) == 0)
+      {
         /*name was found so head_child is list of things within that
         Unix dir*/
-        printf ("%s\n", current->name);
+        printf("%s\n", current->name);
         free(arg_copy);
         return 1;
       }
       free(arg_copy);
       current = current->next;
-    } 
+    }
   }
   /*if file/dir name not present, return 0*/
   free(arg_copy);
   return 0;
 }
 
-
-
 /*Print entire directory from root to current directory. If at root,
   just prints "/". Majority of work is done by passing the
   current directory into pwd_helper.*/
-void pwd(Unix *filesystem){
+void pwd(Unix *filesystem)
+{
   char *path;
 
-  if(filesystem == NULL)
+  if (filesystem == NULL)
     return;
 
   path = malloc(1);
-  if(path == NULL)
+  if (path == NULL)
     return;
   strcpy(path, "");
 
   // printf ("%s\n", pwd_helper(filesystem->current_dir, path));
-  printf ("$ %s> ", pwd_helper(filesystem->current_dir, path));
+  printf("$ %s> ", pwd_helper(filesystem->current_dir, path));
   free(path);
 }
 
@@ -609,11 +638,13 @@ temp onto path.
 
 Once current->parent is NULL, we are at the 
 root (our base case) so return the path.*/
-char* pwd_helper(Unix *current, char *path){
+char *pwd_helper(Unix *current, char *path)
+{
   char *temp_store_path;
 
   /*if at the root, base case returns path*/
-  if (current->parent_dir == NULL){
+  if (current->parent_dir == NULL)
+  {
     /*increases space of path to accomodate current name we're about
     to add*/
     path = realloc(path, strlen(current->name) + strlen(path) + 2);
@@ -633,12 +664,14 @@ char* pwd_helper(Unix *current, char *path){
     return path;
   }
   /*case for the first call, the path is currently empty*/
-  if (strlen(path) == 0){
+  if (strlen(path) == 0)
+  {
     path = malloc(strlen(current->name) + 1);
     strcpy(path, current->name);
-  }  
+  }
   /*otherwise, recursive call continues upwards*/
-  else {
+  else
+  {
     /*increases space of path to accomodate current name we're about
     to add*/
     path = realloc(path, strlen(current->name) + strlen(path) + 2);
@@ -658,16 +691,13 @@ char* pwd_helper(Unix *current, char *path){
   return pwd_helper(current->parent_dir, path);
 }
 
-
-
-
-
 /*Removes and frees up all files/dirs within the filesystem. Helper function
 does majority of the work, we pass in the list of 
 items within the root directory into rmfs_helper. Helper is
 unable to free the root itself, root is manually freed after
 recursive function.*/
-void rmfs(Unix *filesystem){
+void rmfs(Unix *filesystem)
+{
   /*if children2 of children1 is an empty list, free children1*/
   if (filesystem == NULL)
     return;
@@ -686,25 +716,29 @@ void rmfs(Unix *filesystem){
   a leaf. if a child DOES have a child, recursive call the 
   child of the child. Ultimately the leaves of this n-ary tree
   are freed up*/
-void rmfs_helper(Unix *root){
+void rmfs_helper(Unix *root)
+{
   Unix *current;
   Unix *temp_next;
 
   current = root;
-  while (current != NULL){
+  while (current != NULL)
+  {
     temp_next = current->next;
     /*if this child has children, recursive call to make
       this child = root param*/
-    if (current->head_child != NULL){
+    if (current->head_child != NULL)
+    {
       rmfs_helper(current->head_child);
       /*finished freeing sub files, so now free current dir*/
       free(current->name);
       free(current);
     }
     /*we are at a leaf, so free this leaf*/
-    else {
+    else
+    {
       free(current->name);
-      free(current); 
+      free(current);
     }
     /*traverse*/
     current = temp_next;
@@ -715,13 +749,12 @@ void rmfs_helper(Unix *root){
   return;
 }
 
-
-
 /*Removes and frees individual file or dir. If removing a dir,
 all files/dirs below the dir must be freed as well. Freeing all below dir
 uses recursive call of rmfs_helper, since rmfs helper frees 
 all within a dir.*/
-int rm(Unix *filesystem, const char arg[]){
+int rm(Unix *filesystem, const char arg[])
+{
   Unix *current;
   Unix *temp;
   char *arg_copy;
@@ -731,13 +764,12 @@ int rm(Unix *filesystem, const char arg[]){
     return 0;
 
   /*any of these as an arg are also error*/
-  if (strcmp(arg, ".") == 0 || strcmp(arg,"..") == 0
-   || strcmp(arg,"/") == 0 || strlen(arg) == 0)
+  if (strcmp(arg, ".") == 0 || strcmp(arg, "..") == 0 || strcmp(arg, "/") == 0 || strlen(arg) == 0)
     return 0;
 
   /*if contains a "/"" and isnt a single "/"*/
   if ((strlen(arg) > 1) && strchr(arg, '/') != NULL)
-    return 0; 
+    return 0;
 
   /*makes copy of arg name, appends "/" to
   mark as dir*/
@@ -756,19 +788,19 @@ int rm(Unix *filesystem, const char arg[]){
     what we're searching*/
   current = filesystem->current_dir->head_child;
   /*if arg is the head, remove the head and reassign head*/
-  if (strcmp(current->name, arg) == 0 
-    || strcmp(current->name,arg_copy) == 0 ){
-    if (current->is_dir == 0){ 
-      filesystem->current_dir->head_child 
-          = filesystem->current_dir->head_child->next;
+  if (strcmp(current->name, arg) == 0 || strcmp(current->name, arg_copy) == 0)
+  {
+    if (current->is_dir == 0)
+    {
+      filesystem->current_dir->head_child = filesystem->current_dir->head_child->next;
       free(current->name);
       free(current);
     }
     /*else it is a dir*/
-    else {
+    else
+    {
       /*reassigns head*/
-      filesystem->current_dir->head_child 
-          = filesystem->current_dir->head_child->next;
+      filesystem->current_dir->head_child = filesystem->current_dir->head_child->next;
       /*recursively free and remove all within dir*/
       rmfs_helper(current->head_child);
       free(current->name);
@@ -778,14 +810,15 @@ int rm(Unix *filesystem, const char arg[]){
     return 1;
   }
 
-
   /*now searching for file/dir within the list, before head case 
   already checked*/
-  while (current->next != NULL){
+  while (current->next != NULL)
+  {
     /*if we find a file of arg name, remove it and return 1*/
-    if (strcmp(current->next->name, arg) == 0 
-        || strcmp(current->next->name, arg_copy) == 0){
-      if (current->is_dir == 0){ 
+    if (strcmp(current->next->name, arg) == 0 || strcmp(current->next->name, arg_copy) == 0)
+    {
+      if (current->is_dir == 0)
+      {
         /*save current->next to be freed later*/
         temp = current->next;
         /*fix next pointer*/
@@ -794,7 +827,8 @@ int rm(Unix *filesystem, const char arg[]){
         free(temp);
       }
       /*else it is a dir*/
-      else {
+      else
+      {
         /*save current->next to be freed later*/
         temp = current->next;
         /*recursive call re*/
